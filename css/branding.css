@@ -1,0 +1,124 @@
+/* Branding and Theme Variables */
+
+/* Light theme (default) */
+:root {
+  /* Core colors */
+  --color-primary: #3355ff;
+  --color-primary-dark: #2244ee;
+  --color-primary-light: #5577ff;
+  --color-primary-translucent: rgba(51, 85, 255, 0.15);
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Text colors */
+  --color-heading: #111827;
+  --color-text: #374151;
+  --color-text-muted: #6b7280;
+
+  /* Background colors */
+  --color-background: #ffffff;
+  --color-accent: #f9fafb;
+  --color-accent-foreground: #111827;
+  --color-hover: #f3f4f6;
+
+  /* UI element colors */
+  --color-border: #e5e7eb;
+  --color-input-bg: #f9fafb;
+  --color-card-bg: #ffffff;
+  --color-footer-bg: #f9fafb;
+  --color-code-bg: #f3f4f6;
+
+  /* Badge colors */
+  --color-badge-bg: #f3f4f6;
+  --color-badge-text: #4b5563;
+
+  /* Button colors */
+  --color-button-primary-bg: var(--color-primary);
+  --color-button-primary-text: white;
+  --color-button-secondary-bg: #f3f4f6;
+  --color-button-secondary-text: #4b5563;
+
+  /* Icon colors */
+  --color-icon-default: #6b7280;
+  --color-icon-active: var(--color-primary);
+}
+
+/* Dark theme */
+.dark-theme {
+  /* Core colors */
+  --color-primary: #5989ff;
+  --color-primary-dark: #4477ff;
+  --color-primary-light: #6a9aff;
+  --color-primary-translucent: rgba(89, 137, 255, 0.15);
+
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-info: #60a5fa;
+
+  /* Text colors */
+  --color-heading: #f9fafb;
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+
+  /* Background colors */
+  --color-background: #111827;
+  --color-accent: #1f2937;
+  --color-accent-foreground: #f9fafb;
+  --color-hover: #374151;
+
+  /* UI element colors */
+  --color-border: #374151;
+  --color-input-bg: #1f2937;
+  --color-card-bg: #1f2937;
+  --color-footer-bg: #1f2937;
+  --color-code-bg: #2d3748;
+
+  /* Badge colors */
+  --color-badge-bg: #374151;
+  --color-badge-text: #d1d5db;
+
+  /* Button colors */
+  --color-button-primary-bg: var(--color-primary);
+  --color-button-primary-text: #111827;
+  --color-button-secondary-bg: #374151;
+  --color-button-secondary-text: #d1d5db;
+
+  /* Icon colors */
+  --color-icon-default: #9ca3af;
+  --color-icon-active: var(--color-primary);
+}
+
+/* Company specific branding styles can go here */
+.logo a {
+  /* Logo specific styles */
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.logo a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--color-primary);
+  border-radius: 0.25rem;
+}
+
+.logo a::after {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--color-background);
+  border-radius: 0.25rem;
+}

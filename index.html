@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application User Guide</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/branding.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="site-wrapper">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <a href="index.html">App User Guide</a>
+          </div>
+          <div class="search-box desktop-only">
+            <i class="fas fa-search search-icon"></i>
+            <input type="search" placeholder="Search documentation...">
+          </div>
+          <div class="header-actions">
+            <button id="mobile-search-toggle" class="icon-button mobile-only">
+              <i class="fas fa-search"></i>
+              <span class="sr-only">Search</span>
+            </button>
+            <button id="theme-toggle" class="icon-button">
+              <i class="fas fa-sun light-icon"></i>
+              <i class="fas fa-moon dark-icon"></i>
+              <span class="sr-only">Toggle theme</span>
+            </button>
+          </div>
+        </div>
+        <div id="mobile-search" class="mobile-search mobile-only">
+          <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="search" placeholder="Search documentation...">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <ul class="sidebar-menu">
+            <li class="sidebar-item">
+              <a href="index.html" class="sidebar-link active">
+                <i class="fas fa-home"></i>
+                <span>Getting Started</span>
+              </a>
+            </li>
+            <li class="sidebar-item has-submenu">
+              <button class="sidebar-link submenu-toggle">
+                <i class="fas fa-layer-group"></i>
+                <span>Core Features</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+              </button>
+              <ul class="submenu">
+                <li>
+                  <a href="pages/dashboard.html" class="submenu-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Dashboard</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="pages/user-management.html" class="submenu-link">
+                    <i class="fas fa-users"></i>
+                    <span>User Management</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="pages/content-management.html" class="submenu-link">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Content Management</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item has-submenu">
+              <button class="sidebar-link submenu-toggle">
+                <i class="fas fa-bolt"></i>
+                <span>Integrations</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+              </button>
+              <ul class="submenu">
+                <li>
+                  <a href="pages/git-integration.html" class="submenu-link">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Git Integration</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="pages/api-usage.html" class="submenu-link">
+                    <i class="fas fa-code"></i>
+                    <span>API Usage</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="pages/third-party-services.html" class="submenu-link">
+                    <i class="fas fa-globe"></i>
+                    <span>Third-Party Services</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item has-submenu">
+              <button class="sidebar-link submenu-toggle">
+                <i class="fas fa-sitemap"></i>
+                <span>Advanced Features</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+              </button>
+              <ul class="submenu">
+                <li>
+                  <a href="pages/workflow-automation.html" class="submenu-link">
+                    <span>Workflow Automation</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="pages/data-pipelines.html" class="submenu-link">
+                    <span>Data Pipelines</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="pages/custom-scripting.html" class="submenu-link">
+                    <span>Custom Scripting</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item has-submenu">
+              <button class="sidebar-link submenu-toggle">
+                <i class="fas fa-cog"></i>
+                <span>Administration</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+              </button>
+              <ul class="submenu">
+                <li>
+                  <a href="pages/system-settings.html" class="submenu-link">
+                    <span>System Settings</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="pages/security.html" class="submenu-link">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="pages/audit-logs.html" class="submenu-link">
+                    <span>Audit Logs</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="container">
+          <div class="content-wrapper">
+            <h1>Welcome to the Application User Guide</h1>
+            <p class="lead">
+              This comprehensive guide will help you understand and use all the features of our full stack application.
+            </p>
+
+            <div class="card-grid">
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="card-title">
+                    <i class="fas fa-rocket"></i>
+                    Getting Started
+                  </h2>
+                  <p class="card-description">Learn the basics and get up and running quickly</p>
+                </div>
+                <div class="card-body">
+                  <p>
+                    New to the application? Start here to learn about installation, setup, and basic navigation.
+                  </p>
+                  <a href="pages/getting-started.html" class="button outline-button">
+                    Read Guide <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="card-title">
+                    <i class="fas fa-book-open"></i>
+                    Feature Documentation
+                  </h2>
+                  <p class="card-description">Detailed guides for each feature</p>
+                </div>
+                <div class="card-body">
+                  <p>
+                    Explore in-depth documentation for each feature and functionality in the application.
+                  </p>
+                  <a href="pages/user-management.html" class="button outline-button">
+                    Browse Features <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card full-width">
+              <div class="card-header">
+                <h2 class="card-title">
+                  <i class="fas fa-lightbulb"></i>
+                  Quick Tips
+                </h2>
+                <p class="card-description">Get the most out of the application</p>
+              </div>
+              <div class="card-body">
+                <ul class="spaced-list">
+                  <li>Use the sidebar navigation to quickly jump between different sections</li>
+                  <li>The search bar at the top helps you find specific features or topics</li>
+                  <li>Each feature page includes step-by-step instructions and screenshots</li>
+                  <li>Toggle between light and dark mode using the button in the top right</li>
+                  <li>Check the "Getting Started" section for a complete overview of the application</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button id="scroll-top" class="scroll-top-button">
+          <i class="fas fa-chevron-up"></i>
+          <span class="sr-only">Back to top</span>
+        </button>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="copyright">
+            &copy; 2024 Your Company. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Contact Support</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Integration Guide</title>
+  <style>
+    /* Essential styles included inline for Confluence compatibility */
+    .con-doc-wrapper {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      color: #172B4D;
+      max-width: 100%;
+    }
+
+    .con-doc-wrapper * {
+      box-sizing: border-box;
+    }
+
+    /* Typography */
+    .con-doc-wrapper h1 {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 24px 0 16px;
+      color: #172B4D;
+    }
+
+    .con-doc-wrapper h2 {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+      color: #172B4D;
+      border-bottom: 1px solid #DFE1E6;
+      padding-bottom: 8px;
+    }
+
+    .con-doc-wrapper h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 16px 0 8px;
+      color: #172B4D;
+    }
+
+    .con-doc-wrapper p {
+      margin: 0 0 16px;
+      color: #172B4D;
+    }
+
+    .con-doc-wrapper ul, .con-doc-wrapper ol {
+      margin: 0 0 16px;
+      padding-left: 24px;
+    }
+
+    .con-doc-wrapper li {
+      margin-bottom: 8px;
+    }
+
+    .con-doc-wrapper a {
+      color: #0052CC;
+      text-decoration: none;
+    }
+
+    .con-doc-wrapper a:hover {
+      text-decoration: underline;
+    }
+
+    /* Cards */
+    .con-card {
+      background-color: #FFFFFF;
+      border: 1px solid #DFE1E6;
+      border-radius: 3px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 1px rgba(9, 30, 66, 0.1);
+    }
+
+    .con-card-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid #DFE1E6;
+      background-color: #F4F5F7;
+    }
+
+    .con-card-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+    }
+
+    .con-card-title i {
+      margin-right: 8px;
+      color: #0052CC;
+    }
+
+    .con-card-content {
+      padding: 16px;
+    }
+
+    /* Admonitions */
+    .con-admonition {
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 3px;
+      display: flex;
+      border-left: 4px solid;
+    }
+
+    .con-admonition-icon {
+      flex-shrink: 0;
+      margin-right: 12px;
+      color: inherit;
+    }
+
+    .con-admonition-content {
+      flex: 1;
+    }
+
+    .con-admonition-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .con-note {
+      background-color: #EAE6FF;
+      border-left-color: #5243AA;
+    }
+
+    .con-note .con-admonition-icon {
+      color: #5243AA;
+    }
+
+    .con-tip {
+      background-color: #E3FCEF;
+      border-left-color: #00875A;
+    }
+
+    .con-tip .con-admonition-icon {
+      color: #00875A;
+    }
+
+    .con-warning {
+      background-color: #FFFAE6;
+      border-left-color: #FF8B00;
+    }
+
+    .con-warning .con-admonition-icon {
+      color: #FF8B00;
+    }
+
+    .con-caution {
+      background-color: #FFEBE6;
+      border-left-color: #DE350B;
+    }
+
+    .con-caution .con-admonition-icon {
+      color: #DE350B;
+    }
+
+    /* Step by Step guide */
+    .con-steps {
+      margin: 24px 0;
+    }
+
+    .con-step {
+      display: flex;
+      margin-bottom: 24px;
+    }
+
+    .con-step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background-color: #0052CC;
+      color: white;
+      border-radius: 50%;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-right: 12px;
+      margin-top: 2px;
+    }
+
+    .con-step-content {
+      flex: 1;
+    }
+
+    .con-step-content h3 {
+      margin-top: 0;
+    }
+
+    /* Tabs */
+    .con-tabs {
+      margin: 24px 0;
+    }
+
+    .con-tab-list {
+      display: flex;
+      border-bottom: 1px solid #DFE1E6;
+      margin-bottom: 16px;
+      overflow-x: auto;
+    }
+
+    .con-tab {
+      padding: 8px 16px;
+      cursor: pointer;
+      color: #42526E;
+      border-bottom: 2px solid transparent;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .con-tab:hover {
+      color: #0052CC;
+    }
+
+    .con-tab.active {
+      color: #0052CC;
+      border-bottom-color: #0052CC;
+    }
+
+    .con-tab-panel {
+      display: none;
+    }
+
+    .con-tab-panel.active {
+      display: block;
+    }
+
+    /* Images */
+    .con-image {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #DFE1E6;
+      border-radius: 3px;
+      margin: 16px 0;
+    }
+
+    .con-image-caption {
+      text-align: center;
+      color: #5E6C84;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    /* Expandable sections */
+    .con-expandable {
+      border: 1px solid #DFE1E6;
+      border-radius: 3px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .con-expandable-header {
+      background-color: #F4F5F7;
+      padding: 12px 16px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    .con-expandable-content {
+      padding: 16px;
+      border-top: 1px solid #DFE1E6;
+    }
+
+    /* Feature list */
+    .con-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .con-feature-list li {
+      display: flex;
+      align-items: flex-start;
+      padding: 4px 0;
+    }
+
+    .con-feature-list li i {
+      color: #0052CC;
+      margin-right: 8px;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="con-doc-wrapper">
+    <h1>Git Integration Guide</h1>
+    <p>Learn how to connect, configure, and manage Git repositories with our application.</p>
+
+    <div class="con-card">
+      <div class="con-card-header">
+        <h2 class="con-card-title">
+          <i class="aui-icon aui-icon-small aui-iconfont-info"></i>
+          Overview
+        </h2>
+      </div>
+      <div class="con-card-content">
+        <p>The Git Integration feature allows you to connect your application to Git repositories, enabling seamless version control and collaboration. This integration supports GitHub, GitLab, Bitbucket, and Azure DevOps repositories.</p>
+        
+        <div class="con-admonition con-note">
+          <div class="con-admonition-icon">
+            <i class="aui-icon aui-icon-small aui-iconfont-info"></i>
+          </div>
+          <div class="con-admonition-content">
+            <p>Git Integration requires appropriate permissions to access your repositories. Make sure you have the necessary access rights before setting up the integration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Accessing Git Integration</h2>
+    <p>The Git Integration feature can be accessed from the main navigation menu. Here's how to navigate to the Git Integration page:</p>
+
+    <div class="con-steps">
+      <div class="con-step">
+        <div class="con-step-number">1</div>
+        <div class="con-step-content">
+          <h3>Open the Main Menu</h3>
+          <p>Click on the "Integrations" item in the main navigation sidebar.</p>
+        </div>
+      </div>
+
+      <div class="con-step">
+        <div class="con-step-number">2</div>
+        <div class="con-step-content">
+          <h3>Select Git Integration</h3>
+          <p>From the Integrations submenu, click on "Git Integration" to access the Git management dashboard.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Git Dashboard Interface</h2>
+    <p>The Git Integration dashboard provides a comprehensive overview of all your connected repositories and recent activity.</p>
+
+    <div class="con-tabs">
+      <div class="con-tab-list">
+        <div class="con-tab active" data-tab="repositories">Repositories</div>
+        <div class="con-tab" data-tab="activity">Activity Feed</div>
+        <div class="con-tab" data-tab="settings">Settings</div>
+      </div>
+
+      <div class="con-tab-panel active" id="repositories">
+        <p>The Repositories tab displays all connected Git repositories. Each repository card shows key information and provides quick access to common actions.</p>
+        
+        <h3>Repository Card</h3>
+        <p>Each repository card displays the following information:</p>
+        <ul>
+          <li><strong>Repository Name:</strong> The name of the repository</li>
+          <li><strong>Provider Icon:</strong> Indicates whether it's GitHub, GitLab, etc.</li>
+          <li><strong>Default Branch:</strong> Shows the default branch (usually main or master)</li>
+          <li><strong>Last Commit:</strong> Timestamp of the most recent commit</li>
+          <li><strong>Status Indicator:</strong> Shows if the connection is active</li>
+        </ul>
+      </div>
+
+      <div class="con-tab-panel" id="activity">
+        <p>The Activity Feed tab shows recent Git events across all connected repositories, helping you stay updated on the latest changes.</p>
+        
+        <h3>Activity Types</h3>
+        <p>The activity feed tracks various types of Git events:</p>
+        <ul>
+          <li><strong>Commits:</strong> New code commits to any branch</li>
+          <li><strong>Pull Requests:</strong> New, updated, or merged pull requests</li>
+          <li><strong>Branch Events:</strong> Creation or deletion of branches</li>
+          <li><strong>Comments:</strong> Comments on commits or pull requests</li>
+        </ul>
+      </div>
+
+      <div class="con-tab-panel" id="settings">
+        <p>The Settings tab allows you to configure global settings for the Git Integration feature.</p>
+        
+        <h3>Global Settings</h3>
+        <p>The following global settings can be configured:</p>
+        <ul>
+          <li><strong>Default Provider:</strong> Set your preferred Git provider</li>
+          <li><strong>Sync Frequency:</strong> How often to sync with remote repositories</li>
+          <li><strong>Webhook Settings:</strong> Configure webhook endpoints</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Adding a Git Repository</h2>
+    <p>To connect a new Git repository to your application, follow these steps:</p>
+
+    <div class="con-expandable">
+      <div class="con-expandable-header">
+        <div>Step-by-Step Instructions</div>
+        <i class="aui-icon aui-icon-small aui-iconfont-chevron-down"></i>
+      </div>
+      <div class="con-expandable-content">
+        <div class="con-steps">
+          <div class="con-step">
+            <div class="con-step-number">1</div>
+            <div class="con-step-content">
+              <h3>Access the Git Integration Dashboard</h3>
+              <p>Navigate to the Git Integration page as described in the "Accessing Git Integration" section above.</p>
+            </div>
+          </div>
+
+          <div class="con-step">
+            <div class="con-step-number">2</div>
+            <div class="con-step-content">
+              <h3>Initiate Repository Connection</h3>
+              <p>Click the "Add Repository" button in the top-right corner of the Repositories tab.</p>
+            </div>
+          </div>
+
+          <div class="con-step">
+            <div class="con-step-number">3</div>
+            <div class="con-step-content">
+              <h3>Select Git Provider</h3>
+              <p>Choose your Git provider from the available options (GitHub, GitLab, Bitbucket, or Azure DevOps).</p>
+              
+              <div class="con-admonition con-tip">
+                <div class="con-admonition-icon">
+                  <i class="aui-icon aui-icon-small aui-iconfont-check"></i>
+                </div>
+                <div class="con-admonition-content">
+                  <p>If this is your first time connecting to a particular Git provider, you'll need to authenticate and authorize the application to access your repositories.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="con-step">
+            <div class="con-step-number">4</div>
+            <div class="con-step-content">
+              <h3>Select Repository</h3>
+              <p>After authentication, you'll see a list of available repositories from your account. Select the repository you want to connect.</p>
+            </div>
+          </div>
+
+          <div class="con-step">
+            <div class="con-step-number">5</div>
+            <div class="con-step-content">
+              <h3>Configure Repository Settings</h3>
+              <p>Configure the following settings for your repository:</p>
+              <ul>
+                <li><strong>Display Name:</strong> A custom name for the repository (optional)</li>
+                <li><strong>Default Branch:</strong> The branch to use by default</li>
+                <li><strong>Sync Frequency:</strong> How often to sync with the remote repository</li>
+                <li><strong>Webhook Integration:</strong> Enable/disable webhook notifications</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="con-step">
+            <div class="con-step-number">6</div>
+            <div class="con-step-content">
+              <h3>Complete Connection</h3>
+              <p>Click the "Connect Repository" button to finalize the connection.</p>
+              <p>The system will perform an initial sync with the repository, which may take a few moments depending on the repository size.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Troubleshooting</h2>
+    <p>Common issues and their solutions to help you resolve problems with Git Integration:</p>
+
+    <div class="con-expandable">
+      <div class="con-expandable-header">
+        <div>Authentication Failures</div>
+        <i class="aui-icon aui-icon-small aui-iconfont-chevron-down"></i>
+      </div>
+      <div class="con-expandable-content">
+        <p>If you're unable to connect to a repository due to authentication issues:</p>
+        <ul>
+          <li>Verify your Git provider credentials are correct</li>
+          <li>Check if your personal access token has expired</li>
+          <li>Ensure your token has the necessary permissions (repo, read:org, etc.)</li>
+          <li>Try reconnecting the Git provider in the Settings tab</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="con-expandable">
+      <div class="con-expandable-header">
+        <div>Repository Not Syncing</div>
+        <i class="aui-icon aui-icon-small aui-iconfont-chevron-down"></i>
+      </div>
+      <div class="con-expandable-content">
+        <p>If a repository isn't syncing properly:</p>
+        <ul>
+          <li>Try a manual sync to see if there are specific errors</li>
+          <li>Check if the repository still exists in your Git provider</li>
+          <li>Verify you still have access to the repository</li>
+          <li>Check webhook configurations if enabled</li>
+        </ul>
+        
+        <div class="con-admonition con-warning">
+          <div class="con-admonition-icon">
+            <i class="aui-icon aui-icon-small aui-iconfont-warning"></i>
+          </div>
+          <div class="con-admonition-content">
+            <p>If you're using a firewall or VPN, ensure it's not blocking outgoing connections to your Git provider's servers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Additional Resources</h2>
+    <p>For more information about using Git Integration, check out these resources:</p>
+
+    <ul class="con-feature-list">
+      <li>
+        <i class="aui-icon aui-icon-small aui-iconfont-document"></i>
+        <span><a href="#">Git Integration API Documentation</a></span>
+      </li>
+      <li>
+        <i class="aui-icon aui-icon-small aui-iconfont-video"></i>
+        <span><a href="#">Video Tutorial: Setting Up Git Integration</a></span>
+      </li>
+      <li>
+        <i class="aui-icon aui-icon-small aui-iconfont-question-circle"></i>
+        <span><a href="#">Frequently Asked Questions</a></span>
+      </li>
+    </ul>
+
+    <div class="con-admonition con-tip">
+      <div class="con-admonition-icon">
+        <i class="aui-icon aui-icon-small aui-iconfont-check"></i>
+      </div>
+      <div class="con-admonition-content">
+        <p>If you need further assistance with Git Integration, contact our support team at <a href="mailto:support@example.com">support@example.com</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple JavaScript for tabs and expandable sections
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab functionality
+      const tabs = document.querySelectorAll('.con-tab');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          // Get tab id
+          const tabId = this.getAttribute('data-tab');
+          
+          // Remove active class from all tabs and panels
+          document.querySelectorAll('.con-tab').forEach(t => {
+            t.classList.remove('active');
+          });
+          
+          document.querySelectorAll('.con-tab-panel').forEach(p => {
+            p.classList.remove('active');
+          });
+          
+          // Add active class to current tab and panel
+          this.classList.add('active');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+      
+      // Expandable sections
+      const expandableHeaders = document.querySelectorAll('.con-expandable-header');
+      
+      expandableHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          // Toggle expanded class on content
+          const content = this.nextElementSibling;
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+          
+          // Toggle icon
+          const icon = this.querySelector('.aui-iconfont-chevron-down');
+          icon.style.transform = content.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0)';
+        });
+        
+        // Initialize all expandables as closed
+        header.nextElementSibling.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
